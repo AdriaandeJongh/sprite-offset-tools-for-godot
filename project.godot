@@ -13,7 +13,7 @@ config_version=5
 config/name="SpriteOffsetTools"
 run/main_scene="uid://cxlyc8auv0meh"
 config/features=PackedStringArray("4.7", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://images/icon.svg"
 
 [display]
 

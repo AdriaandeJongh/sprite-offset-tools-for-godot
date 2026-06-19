@@ -1,29 +1,29 @@
 [gd_scene format=3 uid="uid://dbnkfusqqgq32"]
 
-[ext_resource type="Texture2D" uid="uid://bgg4d1ko5bnra" path="res://images/object_scarecrow.png" id="1_g28hq"]
-[ext_resource type="Texture2D" uid="uid://bhgfvrn55lp2h" path="res://images/object_stepladder.png" id="2_jcpy2"]
-[ext_resource type="Texture2D" uid="uid://dubnmp67ndxru" path="res://images/object_stone_block_broken.png" id="3_nfnsu"]
-[ext_resource type="Texture2D" uid="uid://dwm0jr1rwm0o6" path="res://images/tree_birch_02.png" id="4_64ein"]
+[ext_resource type="Texture2D" uid="uid://bgg4d1ko5bnra" path="res://images/object_scarecrow.png" id="1_kqbnh"]
+[ext_resource type="Texture2D" uid="uid://bhgfvrn55lp2h" path="res://images/object_stepladder.png" id="2_ew0k8"]
+[ext_resource type="Texture2D" uid="uid://dubnmp67ndxru" path="res://images/object_stone_block_broken.png" id="3_4214o"]
+[ext_resource type="Texture2D" uid="uid://dwm0jr1rwm0o6" path="res://images/tree_birch_02.png" id="4_e1smc"]
 
 [node name="Node2D" type="Node2D" unique_id=230963428]
 y_sort_enabled = true
 
 [node name="ObjectScarecrow" type="Sprite2D" parent="." unique_id=1372059695]
 position = Vector2(71.25, 116.75)
-texture = ExtResource("1_g28hq")
+texture = ExtResource("1_kqbnh")
 offset = Vector2(-0.25, -55.75)
 
 [node name="ObjectStepladder" type="Sprite2D" parent="." unique_id=1312177392]
 position = Vector2(216.75, 121.5)
-texture = ExtResource("2_jcpy2")
+texture = ExtResource("2_ew0k8")
 offset = Vector2(2.25, -42.5)
 
 [node name="ObjectStoneBlockBroken" type="Sprite2D" parent="." unique_id=418058412]
 position = Vector2(376.57144, 207.2857)
-texture = ExtResource("3_nfnsu")
+texture = ExtResource("3_4214o")
 offset = Vector2(-3.5714302, -47.285713)
 
 [node name="TreeBirch02" type="Sprite2D" parent="." unique_id=1842561179]
 position = Vector2(355.33334, 294)
-texture = ExtResource("4_64ein")
+texture = ExtResource("4_e1smc")
 offset = Vector2(-4.333336, -169)
