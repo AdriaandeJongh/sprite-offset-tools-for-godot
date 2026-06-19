@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://glf1bq34uo8" path="res://addons/sprite_offset_tools/sprite_offset_editor.gd" id="1_iglco"]
 
 [node name="SpriteOffsetEditor" type="EditorDock" unique_id=1041558677]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(200, 200)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,11 +36,6 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Tools…"
 flat = false
-item_count = 2
-popup/item_0/text = "Clear old / invalid pivots from database"
-popup/item_0/id = 0
-popup/item_1/text = "Update pivots in all scenes…"
-popup/item_1/id = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1661073352]
 layout_mode = 2
@@ -58,7 +53,7 @@ theme_override_constants/margin_bottom = 4
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/ScrollContainer/MarginContainer" unique_id=2051009597]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -66,7 +61,6 @@ size_flags_vertical = 0
 [node name="ReferenceRect" type="ReferenceRect" parent="VBoxContainer/ScrollContainer/MarginContainer/TextureRect" unique_id=557848729]
 unique_name_in_owner = true
 visible = false
-show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

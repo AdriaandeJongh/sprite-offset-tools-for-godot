@@ -30,6 +30,12 @@ func _ready() -> void:
 	_try_select_from_fs()
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_EDITOR_PRE_SAVE:
+		_deselect_texture()
+		tools_menu.get_popup().clear()
+
+
 func _load_layout_from_config(config: ConfigFile, section: String) -> void:
 	texture_scale = config.get_value("Sprite Offset Editor", "texture_scale", 4.0)
 	texture_scale = clampf(texture_scale, 1.0, 10.0)
@@ -68,7 +74,7 @@ func _deselect_texture() -> void:
 	no_select_label.show()
 	current_texture = ""
 	texture_rect.texture = null
-	texture_rect.custom_minimum_size = Vector2.ONE * 100.0
+	texture_rect.custom_minimum_size = Vector2.ONE * 200.0
 	reference_rect.hide()
 
 
