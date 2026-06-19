@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://ngrx3lxeecv3"]
+
+[ext_resource type="Script" uid="uid://glf1bq34uo8" path="res://addons/sprite_offset_tools/sprite_offset_editor.gd" id="1_iglco"]
+
+[node name="SpriteOffsetEditor" type="EditorDock" unique_id=1041558677]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+title = "Sprite Offset Editor"
+default_slot = 8
+available_layouts = 7
+script = ExtResource("1_iglco")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=613724027]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=132544652]
+layout_mode = 2
+alignment = 2
+
+[node name="EditorSpinSlider" type="EditorSpinSlider" parent="VBoxContainer/HBoxContainer" unique_id=963945984]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+min_value = 1.0
+max_value = 10.0
+step = 0.5
+value = 4.0
+label = "Texture Scale"
+
+[node name="MenuButton" type="MenuButton" parent="VBoxContainer/HBoxContainer" unique_id=415329221]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Tools…"
+flat = false
+item_count = 2
+popup/item_0/text = "Clear old / invalid pivots from database"
+popup/item_0/id = 0
+popup/item_1/text = "Update pivots in all scenes…"
+popup/item_1/id = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1661073352]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer" unique_id=140798617]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/ScrollContainer/MarginContainer" unique_id=2051009597]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="VBoxContainer/ScrollContainer/MarginContainer/TextureRect" unique_id=557848729]
+unique_name_in_owner = true
+visible = false
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="NoSelectLabel" type="Label" parent="VBoxContainer/ScrollContainer/MarginContainer" unique_id=113456126]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Select one .png in the FileSystem…"
+
+[node name="SaveTimer" type="Timer" parent="." unique_id=1546276485]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[connection signal="draw" from="VBoxContainer/ScrollContainer/MarginContainer/TextureRect" to="." method="_on_texture_rect_draw"]
+[connection signal="gui_input" from="VBoxContainer/ScrollContainer/MarginContainer/TextureRect" to="." method="_on_texture_rect_gui_input"]
+[connection signal="timeout" from="SaveTimer" to="." method="_save_database"]
