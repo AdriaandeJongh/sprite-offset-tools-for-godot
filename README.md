@@ -1,0 +1,1 @@
+This repository contains the source and a small test project for the Sprite Offset Tools plugin for Godot 4.x that can be downloaded from the Godot Asset Store here: https://store.godotengine.org/asset/adriaan/sprite-offset-tools/preview/
