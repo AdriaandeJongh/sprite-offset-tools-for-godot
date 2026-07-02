@@ -47,7 +47,7 @@ static func get_offset_for_texture(texture: Texture2D) -> Vector2:
 static func get_offset_for_texture_uid(texture_uid: String) -> Vector2:
 	if not _db_initialized:
 		_load_database()
-	return _db.get(texture_uid)
+	return _db.get(texture_uid, Vector2.ZERO)
 
 
 ## Set the offset for a texture. Offset should be relative to the left top corner; not the center. If Sprite2D.centered is enabled, simply substract `texture.get_size() * 0.5` from the offset.
