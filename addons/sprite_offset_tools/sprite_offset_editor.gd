@@ -90,6 +90,13 @@ func _select_texture(path: String):
 	texture_rect.texture = load(path)
 	texture_rect.custom_minimum_size = texture_rect.texture.get_size() * texture_scale
 	reference_rect.show()
+	
+	# Save the default offset (center) to the database if it isn't present there yet, so that there is
+	# no confusion when someone looks at the offset, sees it at the center, but doesn't get the center when
+	# programmatically getting the offset for that texture later.
+	if not SpriteOffsetDatabase.has_offset_for_texture_uid(current_texture):
+		SpriteOffsetDatabase.set_offset_for_texture_uid(current_texture, texture_rect.texture.get_size() * 0.5)
+		_save_database()
 
 
 func _on_texture_rect_gui_input(event: InputEvent) -> void:
