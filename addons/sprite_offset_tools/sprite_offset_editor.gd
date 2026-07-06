@@ -19,6 +19,7 @@ var current_texture: String
 
 func _ready() -> void:
 	EditorInterface.get_file_system_dock().selection_changed.connect(_try_select_from_fs)
+	visibility_changed.connect(_on_visibility_changed)
 	
 	tools_menu.get_popup().clear()
 	tools_menu.get_popup().id_pressed.connect(_on_tools_menu_item_pressed)
@@ -45,6 +46,11 @@ func _load_layout_from_config(config: ConfigFile, section: String) -> void:
 
 func _save_layout_to_config(config: ConfigFile, section: String) -> void:
 	config.set_value("Sprite Offset Editor", "texture_scale", texture_scale)
+
+
+func _on_visibility_changed() -> void:
+	if is_visible_in_tree():
+		_try_select_from_fs()
 
 
 func _try_select_from_fs():
