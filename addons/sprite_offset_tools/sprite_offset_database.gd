@@ -80,21 +80,24 @@ static func update_offset(sprite: Sprite2D, preserve_position: bool) -> void:
 		_load_database()
 	
 	var texture_uid = ResourceUID.path_to_uid(sprite.texture.resource_path)
-	var target_offset: Vector2
+	var target_offset: Vector2 = Vector2.ZERO
+	
 	if has_offset_for_texture_uid(texture_uid):
 		target_offset = get_offset_for_texture_uid(texture_uid)
+	
+	if sprite.centered:
+		var center: Vector2 = sprite.texture.get_size() * 0.5
+		target_offset = center - target_offset
 	else:
-		target_offset = sprite.texture.get_size() * 0.5
+		target_offset = -target_offset
 	
 	if not preserve_position:
-		sprite.offset = sprite.texture.get_size() * 0.5 - target_offset
+		sprite.offset = target_offset
 		return
 	
-	var current_offset: Vector2 = sprite.texture.get_size() * 0.5 - sprite.offset
-	
-	if target_offset != current_offset:
+	if not target_offset.is_equal_approx(sprite.offset):
 		var prev_offset: Vector2 = sprite.offset
-		sprite.offset = sprite.texture.get_size() * 0.5 - target_offset
+		sprite.offset = target_offset
 		sprite.position -= sprite.offset - prev_offset
 
 
