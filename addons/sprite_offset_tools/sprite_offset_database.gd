@@ -38,34 +38,36 @@ static func has_offset_for_texture_uid(texture_uid: String) -> bool:
 	return _db.has(texture_uid)
 
 
-## Get the offset for a texture. Note that the offsets in the database are relative to
-## the left top corner; not the center. If you want to use the offset returned by
-## this function for a Sprite2D with the 'centered' property enabled, simply
-## add `texture.get_size() * 0.5.
+## Get the offset for a texture. For Reasons™, the offset in the database are relative
+## to the top-left corner and inverted. Example usage where 'target_offset' is
+## the offset returned by this function: sprite.offset = -target_offset
+## if not centered else sprite.texture.get_size() * 0.5 - target_offset
 static func get_offset_for_texture(texture: Texture2D) -> Vector2:
 	return get_offset_for_texture_uid(ResourceUID.path_to_uid(texture.resource_path))
 
 
-## Get the offset for a texture. Note that the offsets in the database are relative to
-## the left top corner; not the center. If you want to use the offset returned by
-## this function for a Sprite2D with the 'centered' property enabled, simply
-## add `texture.get_size() * 0.5.
+## Get the offset for a texture. For Reasons™, the offset in the database are relative
+## to the top-left corner and inverted. Example usage where 'target_offset' is
+## the offset returned by this function: sprite.offset = -target_offset
+## if not centered else sprite.texture.get_size() * 0.5 - target_offset
 static func get_offset_for_texture_uid(texture_uid: String) -> Vector2:
 	if not _db_initialized:
 		_load_database()
 	return _db.get(texture_uid, Vector2.ZERO)
 
 
-## Set the offset for a texture. The offsets in the database are relative to
-## the left top corner; not the center. If Sprite2D.centered is enabled, simply
-## substract `texture.get_size() * 0.5` from the offset.
+## Set the offset for a texture. For Reasons™, the offset in the database should be
+## relative to the left top corner and inverted. Example: 
+## SpriteOffsetDatabase.set_offset_for_texture(sprite.texture, -sprite.offset if not
+## sprite.centered else sprite.texture.get_size() * 0.5 - sprite.offset)
 static func set_offset_for_texture(texture: Texture2D, offset: Vector2) -> void:
 	set_offset_for_texture_uid(ResourceUID.path_to_uid(texture.resource_path), offset)
 
 
-## Set the offset for a texture. The offsets in the database are relative to
-## the left top corner; not the center. If Sprite2D.centered is enabled, simply
-## substract `texture.get_size() * 0.5` from the offset.
+## Set the offset for a texture. For Reasons™, the offset in the database should be
+## relative to the left top corner and inverted. Example: 
+## SpriteOffsetDatabase.set_offset_for_texture_uid(texture_uid, -sprite.offset if not
+## sprite.centered else sprite.texture.get_size() * 0.5 - sprite.offset)
 static func set_offset_for_texture_uid(texture_uid: String, offset: Vector2) -> void:
 	if not _db_initialized:
 		_load_database()
