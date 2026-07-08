@@ -100,8 +100,8 @@ static func cleanup() -> void:
 	if not keys_to_remove.is_empty():
 		for s: String in keys_to_remove:
 			_db.erase(s)
-		EditorInterface.get_editor_toaster().push_toast("Removed " + str(keys_to_remove.size()) + " offsets from the database, most likely due to those assets no longer being in the project.")
+		Engine.get_singleton(&"EditorInterface").get_editor_toaster().push_toast("Removed " + str(keys_to_remove.size()) + " offsets from the database, most likely due to those assets no longer being in the project.")
 	else:
-		EditorInterface.get_editor_toaster().push_toast("No Sprite Offset items had to be cleaned up. You're good!")
+		Engine.get_singleton(&"EditorInterface").get_editor_toaster().push_toast("No Sprite Offset items had to be cleaned up. You're good!")
 	
 	save_database()
