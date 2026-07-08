@@ -69,7 +69,7 @@ static func set_offset_for_texture(texture: Texture2D, offset: Vector2) -> void:
 static func set_offset_for_texture_uid(texture_uid: String, offset: Vector2) -> void:
 	if not _db_initialized:
 		_load_database()
-	_db[texture_uid] = offset
+	_db[texture_uid] = offset.snappedf(0.01) 
 
 
 ## Update a Sprite2D's offset to the offset found in the database. If `preserve_position`
