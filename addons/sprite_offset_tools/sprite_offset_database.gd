@@ -75,8 +75,8 @@ static func set_offset_for_texture_uid(texture_uid: String, offset: Vector2) -> 
 
 
 ## Update a Sprite2D's offset to the offset found in the database. If `preserve_position`
-## is `true`, the Sprite2D's position will also be updated to counteract the visual
-## repositioning of the sprite.
+## is `true`, the Sprite2D's position and the positions of its child nodes will be updated 
+## to counteract the (visual) repositioning of the sprite.
 static func update_offset(sprite: Sprite2D, preserve_position: bool) -> void:
 	if not _db_initialized:
 		_load_database()
@@ -93,14 +93,25 @@ static func update_offset(sprite: Sprite2D, preserve_position: bool) -> void:
 	else:
 		target_offset = -target_offset
 	
+	if target_offset.is_equal_approx(sprite.offset):
+		return
+	
 	if not preserve_position:
 		sprite.offset = target_offset
 		return
 	
-	if not target_offset.is_equal_approx(sprite.offset):
-		var prev_offset: Vector2 = sprite.offset
-		sprite.offset = target_offset
-		sprite.position -= sprite.offset - prev_offset
+	var delta_position: Vector2 = target_offset - sprite.offset
+	sprite.offset = target_offset
+	sprite.position -= delta_position
+	
+	if sprite.get_child_count() == 0:
+		return
+	
+	for c: Node in sprite.get_children():
+		if c is not Node2D:
+			continue
+		var n: Node2D = c as Node2D
+		n.position += delta_position
 
 
 ## Clean up the database by removing items in the dictionary that refer to UIDs that
