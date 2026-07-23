@@ -19,7 +19,7 @@ func _can_handle(object) -> bool:
 				all_sprite_2d_nodes = false
 				break
 			_multiple_sprites.append(n)
-		_is_multi_selected = true
+		_is_multi_selected = all_sprite_2d_nodes
 		return all_sprite_2d_nodes
 	
 	return false
